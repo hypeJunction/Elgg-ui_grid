@@ -1,0 +1,99 @@
+@import "compass/css3";
+@import "susy";
+@import "variables";
+
+$susy: (
+columns: $columns,
+gutters: $gutter-ratio,
+gutter-position: split,
+global-box-sizing: border-box,
+);
+
+@function elgg-span($span: 1, $columns: $columns, $outside: false) {
+	$span: span($span of $columns);
+	$gutter: elgg-gutter();
+	@if $outside {
+		@return $span + $gutter*2;
+	} @else {
+		@return $span;
+	}
+}
+
+@function elgg-gutter($span: 1, $columns: $columns, $gutter-ratio: $gutter-ratio) {
+	$column-width: span($span of $columns)*$gutter-ratio;
+	$gutter-width: $column-width*$gutter-ratio*4;
+	@return $gutter-width;
+}
+
+@mixin elgg-grid($screen, $columns: $columns) {
+	$span: 1;
+	@while $span <= $columns {
+		@include elgg-column($screen, $span: $span, $columns: $columns);
+		@include elgg-offset-column($screen, $span: $span, $columns: $columns);
+		@include elgg-gallery($screen, $span);
+		$span: $span + 1;
+	}
+}
+
+@mixin elgg-column($screen, $span: 12, $columns: $columns) {
+	.elgg-#{$screen}-#{$span} {
+		$gutter: elgg-gutter();
+		width: elgg-span($span, $columns, true);
+		&.elgg-column {
+			width: elgg-span($span, $columns);
+			margin: $gutter;
+		}
+	}
+}
+
+@mixin elgg-offset-column($screen, $span: 12, $columns: $columns) {
+	.elgg-offset-#{$screen}-#{$span} {
+		$gutter: elgg-gutter();
+		margin-left: elgg-span($span, $columns, true);
+		&[class*="elgg-#{$screen}-"].elgg-column {
+			margin-left: elgg-span($span, $columns, true) + $gutter;
+		}
+	}
+}
+
+@mixin elgg-gallery($screen, $columns) {
+	.elgg-gallery-#{$screen}-#{$columns} {
+		@include container($columns);
+		& > * {
+			$gutter-ratio: ($columns / 12) * $gutter-ratio;
+			@include box-sizing(border-box);
+			@include gallery(1 of $columns $gutter-ratio);
+			margin: elgg-gutter(1, $columns, $gutter-ratio) * 12 / $columns;
+		}
+	}
+}
+
+.elgg-row {
+	@include container;
+}
+
+[class*="elgg-small-"],
+[class*="elgg-medium-"],
+[class*="elgg-large-"] {
+	@include container;
+	@include box-sizing(border-box);
+	.elgg-row & {
+		float: left;
+	}
+}
+
+@include small-up() {
+	@include elgg-grid(small, $columns);
+}
+@include medium-up() {
+	@include elgg-grid(medium, $columns);
+}
+@include large-up() {
+	@include elgg-grid(large, $columns);
+}
+
+.elgg-spacer {
+	display: block;
+	margin: elgg-gutter();
+	width: 100%;
+}

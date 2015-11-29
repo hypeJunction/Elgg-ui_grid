@@ -1,0 +1,20 @@
+{
+	"name": "hypejunction/ui_grid",
+	"type": "elgg-plugin",
+	"description": "Responsive grid Elgg",
+	"homepage": "http://hypejunction.com",
+	"keywords": [
+		"elgg", "plugin", "grid"
+	],
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Ismayil Khayredinov",
+			"email": "info@hypejunction.com"
+		}
+	],
+	"require-dev": {
+		"composer/installers": "1.*"
+	}
+}
+

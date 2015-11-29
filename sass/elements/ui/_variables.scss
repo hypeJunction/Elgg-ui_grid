@@ -1,0 +1,60 @@
+$small-range: (
+lower: 0em,
+upper: 40em
+);
+$medium-range: (
+lower: 40.063em,
+upper: 64em
+);
+$large-range: (
+lower: 64.063em,
+upper: 90em
+);
+$xlarge-range: (
+lower: 90.063em,
+upper: 120em
+);
+$xxlarge-range: (
+lower: 120.063em,
+upper: 99999999em
+);
+
+$columns: 12 !default;
+$container: 80em !default;
+$gutter-ratio: 1/8;
+
+@mixin small-only() {
+	@include susy-media(map-get($small-range, lower), map-get($small-range, upper)) {
+		@content;
+	}
+}
+
+@mixin small-up() {
+	@include susy-media(map-get($small-range, lower)) {
+		@content;
+	}
+}
+
+@mixin medium-only() {
+	@include susy-media(map-get($medium-range, lower), map-get($medium-range, upper)) {
+		@content;
+	}
+}
+
+@mixin medium-up() {
+	@include susy-media(map-get($medium-range, lower)) {
+		@content;
+	}
+}
+
+@mixin large-only() {
+	@include susy-media(map-get($large-range, lower), map-get($large-range, upper)) {
+		@content;
+	}
+}
+
+@mixin large-up() {
+	@include susy-media(map-get($large-range, lower)) {
+		@content;
+	}
+}
