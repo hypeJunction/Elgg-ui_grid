@@ -1,10 +1,10 @@
 {
 	"name": "hypejunction/ui_grid",
 	"type": "elgg-plugin",
-	"description": "Responsive grid Elgg",
+	"description": "Responsive CSS grid system for Elgg",
 	"homepage": "http://hypejunction.com",
 	"keywords": [
-		"elgg", "plugin", "grid"
+		"elgg", "plugin", "grid", "ui"
 	],
 	"license": "GPL-2.0",
 	"authors": [
@@ -13,8 +13,14 @@
 			"email": "info@hypejunction.com"
 		}
 	],
-	"require-dev": {
-		"composer/installers": "1.*"
+	"require": {
+		"php": ">=7.4",
+		"elgg/elgg": "^4.0",
+		"composer/installers": "^2.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
+		}
 	}
 }
-

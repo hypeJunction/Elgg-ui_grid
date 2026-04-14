@@ -1,6 +1,15 @@
 <?php
 
 return [
+	'plugin' => [
+		'id' => 'ui_grid',
+		'name' => 'Grid System',
+		'version' => '1.1.0',
+		'description' => 'Responsive CSS grid system for Elgg.',
+		'author' => 'Ismayil Khayredinov',
+		'category' => 'ui',
+	],
+
 	'view_extensions' => [
 		'css/elements/grid' => [
 			'elements/ui/grid.css' => [],
