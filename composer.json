@@ -4,7 +4,10 @@
 	"description": "Responsive CSS grid system for Elgg",
 	"homepage": "http://hypejunction.com",
 	"keywords": [
-		"elgg", "plugin", "grid", "ui"
+		"elgg",
+		"plugin",
+		"grid",
+		"ui"
 	],
 	"license": "GPL-2.0",
 	"authors": [
@@ -21,6 +24,11 @@
 	"config": {
 		"allow-plugins": {
 			"composer/installers": true
+		}
+	},
+	"extra": {
+		"elgg-plugin": {
+			"id": "ui_grid"
 		}
 	}
 }
