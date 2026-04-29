@@ -1,4 +1,4 @@
-# ui_grid — Architecture (Elgg 4.x)
+# ui_grid — Architecture (Elgg 7.x)
 
 ## Summary
 
@@ -34,6 +34,25 @@ ui_grid/
 ## Dependencies
 
 None — leaf plugin with no sibling plugin dependencies.
+
+## Migration Notes (6.x → 7.x)
+
+- `elgg/elgg` bumped to `^7.0`.
+- Docker test stack updated to Elgg 7.x (`elgg-composer.json ~7.0.0`).
+- No PHP code changes required (pure CSS/views plugin).
+
+## Migration Notes (5.x → 6.x)
+
+- `elgg/elgg` bumped to `^6.0`, `php` to `>=8.2`.
+- Docker test stack updated to Elgg 6.x.
+- No PHP code changes required.
+
+## Migration Notes (4.x → 5.x)
+
+- `elgg/elgg` bumped to `^5.0`, `php` to `>=8.1`.
+- PHPDoc docblocks added to integration test classes (automated rule 999).
+- Docker test stack updated to Elgg 5.x (PHP 8.1, MySQL 8.0, Playwright v1.59.1).
+- No PHP logic changes required.
 
 ## Migration Notes (3.x → 4.x)
 
