@@ -1,4 +1,4 @@
-# ui_grid — Architecture (Elgg 4.x)
+# ui_grid — Architecture (Elgg 5.x)
 
 ## Summary
 
@@ -41,3 +41,9 @@ None — leaf plugin with no sibling plugin dependencies.
 - `elgg-plugin.php` received the `'plugin'` key.
 - `composer/installers` moved from `require-dev` to `require` and bumped to `^2.0`.
 - No PHP code — no security findings, no exception renames needed.
+
+## Migration Notes (4.x → 5.x)
+
+- Bumped `elgg/elgg ^4.0 → ^5.0`, `php >=7.4 → >=8.2`.
+- No PHP logic changes required — plugin is pure CSS/views.
+- Docker stack updated to Elgg 5.x (PHP 8.2, MySQL 8.0).
