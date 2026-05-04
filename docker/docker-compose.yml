@@ -37,7 +37,10 @@ services:
       ELGG_DATA_ROOT: "/var/www/data/"
       ELGG_DB_PREFIX: "elgg_"
       ELGG_ADMIN_EMAIL: "admin@example.com"
-      ELGG_ADMIN_PASSWORD: "admin12345"
+      # Elgg 7.x defaults min_password_length to 16, so admin password
+      # must be ≥16 chars or batchInstall fails with "Unable to create
+      # an admin account."
+      ELGG_ADMIN_PASSWORD: "admin1234567890123456"
     ports:
       - "${ELGG_PORT:-8480}:80"
     depends_on:
@@ -80,6 +83,8 @@ services:
       ELGG_DB_USER: elgg
       ELGG_DB_PASS: elgg
       ELGG_DB_NAME: elgg
+      ELGG_ADMIN_EMAIL: "admin@example.com"
+      ELGG_ADMIN_PASSWORD: "admin1234567890123456"
     depends_on:
       - elgg
     profiles:

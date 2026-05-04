@@ -58,26 +58,30 @@ jobs:
           docker compose -f docker/docker-compose.yml logs elgg
           exit 1
 
-      - name: Install PHPUnit
+      - name: Ensure PHPUnit is available
         run: |
-          # Elgg 3.x/4.x → PHP 7.4 → PHPUnit 9.x
-          # Elgg 5.x+    → PHP 8.1+ → PHPUnit 10.x (override below if needed)
+          # Elgg ships PHPUnit transitively — install only if missing.
+          # Elgg 3.x/4.x → PHPUnit 9.x; 5.x → 10.x; 6.x/7.x → 11.x.
           docker compose -f docker/docker-compose.yml exec -T elgg \
-            composer require --dev phpunit/phpunit:^9.6 --no-interaction
+            sh -c 'test -x vendor/bin/phpunit || composer require --dev phpunit/phpunit:^9.6 --no-interaction --with-all-dependencies'
 
       - name: Create test DB tables
         run: |
           docker compose -f docker/docker-compose.yml exec -T elgg php -r '
           $pdo = new PDO("mysql:host=db;dbname=elgg", "elgg", "elgg");
-          $tables = $pdo->query("SHOW TABLES LIKE \"elgg_%\"")->fetchAll(PDO::FETCH_COLUMN);
-          foreach ($tables as $t) {
+          $present = array_flip($pdo->query("SHOW TABLES LIKE \"elgg_%\"")->fetchAll(PDO::FETCH_COLUMN));
+          foreach (array_keys($present) as $t) {
               $new = str_replace("elgg_", "c_i_elgg_", $t);
               $pdo->exec("DROP TABLE IF EXISTS $new");
               $r = $pdo->query("SHOW CREATE TABLE $t")->fetch(PDO::FETCH_ASSOC);
               $pdo->exec(str_replace($t, $new, $r["Create Table"]));
           }
+          // Seed only tables that exist — private_settings was merged
+          // into entity metadata in Elgg 6+ and is no longer present.
           foreach (["config","entities","metadata","private_settings","entity_relationships"] as $t) {
-              $pdo->exec("INSERT INTO c_i_elgg_$t SELECT * FROM elgg_$t");
+              if (isset($present["elgg_$t"])) {
+                  $pdo->exec("INSERT INTO c_i_elgg_$t SELECT * FROM elgg_$t");
+              }
           }
           echo "Test tables ready." . PHP_EOL;
           '

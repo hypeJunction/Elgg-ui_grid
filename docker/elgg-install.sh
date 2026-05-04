@@ -10,6 +10,12 @@ echo "MySQL is ready."
 
 cd /var/www/html
 
+# Ensure the data root is writable by the apache user. The host-mounted
+# named volume comes up root-owned, which would override the chown done
+# at image build time and break Elgg's cache writes.
+mkdir -p "${ELGG_DATA_ROOT:-/var/www/data/}"
+chown -R www-data:www-data "${ELGG_DATA_ROOT:-/var/www/data/}"
+
 # Check if Elgg is already installed
 if [ ! -f /var/www/html/.elgg-installed ]; then
     echo "Installing Elgg 7.x..."
@@ -56,13 +62,24 @@ SETTINGS_VALUES
             'displayname' => 'Admin',
             'email' => '${ELGG_ADMIN_EMAIL:-admin@example.com}',
             'username' => 'admin',
-            'password' => '${ELGG_ADMIN_PASSWORD:-admin12345}',
+            'password' => '${ELGG_ADMIN_PASSWORD:-admin1234567890123456}',
         ];
 
         \$installer = new \ElggInstaller();
         \$installer->batchInstall(\$params);
         echo 'Elgg 7.x installed successfully.' . PHP_EOL;
     " 2>&1 || echo "Install completed (check for errors above)."
+
+    # Symlink core plugins from vendor/elgg/elgg/mod into /var/www/html/mod
+    # so generateEntities() can discover them (Elgg looks in mod/ only).
+    echo "Linking core plugins..."
+    for src in /var/www/html/vendor/elgg/elgg/mod/*; do
+        [ -d "$src" ] || continue
+        name="$(basename "$src")"
+        if [ ! -e "/var/www/html/mod/$name" ]; then
+            ln -s "$src" "/var/www/html/mod/$name"
+        fi
+    done
 
     # Activate plugins in priority order
     echo "Activating plugins..."
@@ -118,6 +135,17 @@ SETTINGS_VALUES
         " 2>&1 || echo "Plugin activation completed (check for errors above)."
     fi
 
+    # Wipe simplecache + view_locations so the next request rebuilds the
+    # consolidated CSS/JS bundles to include freshly-activated plugin views.
+    php -r "
+        require_once 'vendor/autoload.php';
+        \$app = \Elgg\Application::getInstance();
+        \$app->bootCore();
+        elgg_clear_caches();
+        echo 'Caches cleared after plugin activation.' . PHP_EOL;
+    " 2>&1 || echo "Cache clear completed (check for errors above)."
+
+    chown -R www-data:www-data /var/www/data
     touch /var/www/html/.elgg-installed
     echo "Elgg 7.x setup complete."
 fi

@@ -84,12 +84,14 @@ class ViewExtensionsTest extends IntegrationTestCase {
      * @return void
      */
     public function testCoreGridCssViewExtended(): void {
-        // ui_grid extends css/elements/grid with elements/ui/grid.css.
-        // Verify the extended core view renders and includes content from our extension.
-        $this->assertTrue(elgg_view_exists('css/elements/grid'));
-        $output = elgg_view('css/elements/grid');
+        // ui_grid extends elgg.css with elements/ui/grid.css so the
+        // grid rules ship in the main stylesheet on Elgg 7.x.
+        $this->assertTrue(elgg_view_exists('elgg.css'));
+        $output = elgg_view('elgg.css');
         $this->assertIsString($output);
         $this->assertNotEmpty($output);
+        $this->assertStringContainsString('.elgg-small-3', $output);
+        $this->assertStringContainsString('.elgg-row', $output);
     }
 
     /**

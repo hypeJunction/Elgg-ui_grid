@@ -11,7 +11,10 @@ return [
 	],
 
 	'view_extensions' => [
-		'css/elements/grid' => [
+		// Elgg 7.x's elgg.css → core.css no longer renders an
+		// elements/grid view, so attach the grid styles directly to
+		// the main stylesheet.
+		'elgg.css' => [
 			'elements/ui/grid.css' => [],
 		],
 		'theme_sandbox/grid' => [

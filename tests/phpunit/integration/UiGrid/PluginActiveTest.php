@@ -37,7 +37,7 @@ class PluginActiveTest extends IntegrationTestCase {
         $config = include dirname(__DIR__, 4) . '/elgg-plugin.php';
         $this->assertIsArray($config);
         $this->assertArrayHasKey('view_extensions', $config);
-        $this->assertArrayHasKey('css/elements/grid', $config['view_extensions']);
+        $this->assertArrayHasKey('elgg.css', $config['view_extensions']);
         $this->assertArrayHasKey('theme_sandbox/grid', $config['view_extensions']);
         $this->assertArrayHasKey('css/theme_sandbox.css', $config['view_extensions']);
     }
