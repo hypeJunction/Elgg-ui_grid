@@ -4,7 +4,7 @@ return [
 	'plugin' => [
 		'id' => 'ui_grid',
 		'name' => 'Grid System',
-		'version' => '1.4.0',
+		'version' => '7.0.0',
 		'description' => 'Responsive CSS grid system for Elgg.',
 		'author' => 'Ismayil Khayredinov',
 		'category' => 'ui',
