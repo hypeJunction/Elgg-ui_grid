@@ -1,20 +1,12 @@
 {
 	"name": "hypejunction/ui_grid",
 	"type": "elgg-plugin",
-<<<<<<< master
 	"description": "Mobile-first responsive grid system for Elgg",
 	"homepage": "https://github.com/hypeJunction/Elgg-ui_grid",
-=======
-	"description": "Responsive CSS grid system for Elgg",
-	"homepage": "http://hypejunction.com",
->>>>>>> migrate/elgg-7.x
 	"keywords": [
-		"elgg",
-		"plugin",
-		"grid",
-		"ui"
+		"elgg", "plugin", "grid"
 	],
-	"license": "GPL-2.0-only",
+	"license": "GPL-2.0",
 	"authors": [
 		{
 			"name": "Ismayil Khayredinov",
@@ -22,25 +14,10 @@
 		}
 	],
 	"require": {
-<<<<<<< master
 		"elgg/elgg": ">=1.11"
 	},
 	"require-dev": {
 		"composer/installers": "1.*"
-=======
-		"php": ">=8.2",
-		"elgg/elgg": "^7.0",
-		"composer/installers": "^2.0"
-	},
-	"config": {
-		"allow-plugins": {
-			"composer/installers": true
-		}
-	},
-	"extra": {
-		"elgg-plugin": {
-			"id": "ui_grid"
-		}
->>>>>>> migrate/elgg-7.x
 	}
 }
+
