@@ -3,7 +3,7 @@
 /**
  * AJAX tabs
  *
- * @author Ismayil Khayredinov <info@hypejunction.com>
+ * @author Ismayil Khayredinov <ismayil.khayredinov@gmail.com>
  * @copyright Copyright (c) 2015, Ismayil Khayredinov
  */
 require_once __DIR__ . '/autoloader.php';

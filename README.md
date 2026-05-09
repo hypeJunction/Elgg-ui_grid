@@ -1,7 +1,6 @@
 Responsive Grid for Elgg
 ========================
-![Elgg 1.11](https://img.shields.io/badge/Elgg-1.11.x-orange.svg?style=flat-square)
-![Elgg 1.12](https://img.shields.io/badge/Elgg-1.12.x-orange.svg?style=flat-square)
+![Elgg 1.x](https://img.shields.io/badge/Elgg-1.x-orange.svg?style=flat-square)
 
 ## Features
 
@@ -12,9 +11,7 @@ Responsive Grid for Elgg
 ![Columns](https://raw.github.com/hypeJunction/Elgg-ui_grid/master/screenshots/columns.png "Columns")
 ![Gallery](https://raw.github.com/hypeJunction/Elgg-ui_grid/master/screenshots/gallery.png "Gallery")
 
-
 ## Usage
-
 
 ### Grid
 
@@ -53,7 +50,4 @@ echo elgg_list_entities(array(
 	'limit' => 48,
 ));
 ```
-
-
-
 

@@ -1,8 +1,8 @@
 {
 	"name": "hypejunction/ui_grid",
 	"type": "elgg-plugin",
-	"description": "Responsive grid Elgg",
-	"homepage": "http://hypejunction.com",
+	"description": "Mobile-first responsive grid system for Elgg",
+	"homepage": "https://github.com/hypeJunction/Elgg-ui_grid",
 	"keywords": [
 		"elgg", "plugin", "grid"
 	],
@@ -10,9 +10,12 @@
 	"authors": [
 		{
 			"name": "Ismayil Khayredinov",
-			"email": "info@hypejunction.com"
+			"email": "ismayil.khayredinov@gmail.com"
 		}
 	],
+	"require": {
+		"elgg/elgg": ">=1.11"
+	},
 	"require-dev": {
 		"composer/installers": "1.*"
 	}
