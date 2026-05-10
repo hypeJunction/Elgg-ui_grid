@@ -51,7 +51,6 @@ echo elgg_list_entities(array(
 ));
 ```
 
-
 ## Compatibility
 
 | Plugin version | Elgg version |
