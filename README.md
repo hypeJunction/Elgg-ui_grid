@@ -1,6 +1,6 @@
 Responsive Grid for Elgg
 ========================
-![Elgg 1.x](https://img.shields.io/badge/Elgg-1.x-orange.svg?style=flat-square)
+![Elgg 7.x](https://img.shields.io/badge/Elgg-7.x-orange.svg?style=flat-square)
 
 ## Features
 
@@ -51,3 +51,8 @@ echo elgg_list_entities(array(
 ));
 ```
 
+## Compatibility
+
+| Plugin version | Elgg version |
+|---|---|
+| current | 7.x |
