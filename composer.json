@@ -30,6 +30,5 @@
         "elgg-plugin": {
             "id": "ui_grid"
         }
-    },
-    "version": "7.0.0"
+    }
 }
