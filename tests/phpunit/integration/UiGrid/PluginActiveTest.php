@@ -19,7 +19,7 @@ class PluginActiveTest extends IntegrationTestCase {
     }
 
     public function testPluginIsActive(): void {
-        $plugin = elgg_get_plugin_from_id('ui_grid');
+        $plugin = \elgg_get_plugin_from_id('ui_grid');
         $this->assertNotNull($plugin);
         $this->assertTrue($plugin->isActive());
     }
