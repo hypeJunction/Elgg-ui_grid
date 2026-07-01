@@ -1,3 +1,6 @@
+<?php
+// phpcs:ignoreFile
+?>
 <h3>Spans</h3>
 <div>
 	<div class="elgg-small-6">
